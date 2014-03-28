@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-oauth-secret-production" type="string">NuqS8V7KrTbFZuYvW5MwSXDRbqfMP78s</property>
+    <property name="acs-oauth-key-production" type="string">aRRdqEyuQZexwI2P1nW2xOeLQ752VTI6</property>
+    <property name="acs-api-key-production" type="string">zEgrr2sukJTsCCCleLh4xUphDP2Kgsml</property>
+    <property name="acs-oauth-secret-development" type="string">RCSIn4f9HyEfoLzfIPqWL7prTDCUTIDM</property>
+    <property name="acs-oauth-key-development" type="string">YoQLWRBJ7QBH8LOjGVqCJ8nzLmWJm15f</property>
+    <property name="acs-api-key-development" type="string">SPjY0UYeS5MpAhbWw7N02ZvmpWCmF11d</property>
+    <id>se.vvtmediadesign.planen</id>
+    <name>LarmKlient</name>
+    <version>1.1</version>
+    <publisher>vvt</publisher>
+    <url>http://www.openlogger.se</url>
+    <description>not specified</description>
+    <copyright>OpenLogger</copyright>
+    <icon>logga.png</icon>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>297c9fc8-f971-4796-9cac-6aba15d09e48</guid>
+    <property name="ti.ui.defaultunit" type="string">dp</property>
+    <ios>
+        <plist>
+            <dict>
+                <key>UISupportedInterfaceOrientations~iphone</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~ipad</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                    <string>UIInterfaceOrientationLandscapeLeft</string>
+                    <string>UIInterfaceOrientationLandscapeRight</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <false/>
+                <key>UIStatusBarStyle</key>
+                <string>UIStatusBarStyleDefault</string>
+            </dict>
+        </plist>
+    </ios>
+    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules/>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">false</target>
+        <target device="iphone">false</target>
+        <target device="mobileweb">true</target>
+        <target device="tizen">false</target>
+    </deployment-targets>
+    <sdk-version>3.2.2.GA</sdk-version>
+</ti:app>

@@ -1,0 +1,14 @@
+[{"AGID":2,"Name":"Alla objekt","StartHour":"00","StopHour":"24","StartMinute":"00","StopMinute":"00","ActiveSaturday":
+true,"ActiveSunday":true,"DemandFastNotification":true,"SerialNotification":false,"ReminderDelay":0,"AllObjects":0,"Active":true,"last_modify":" "},
+
+{"AGID":3,"Name":"ID kommunikation","StartHour":"07","StopHour":"18","StartMinute":"00","StopMinute":"00","ActiveSaturday":
+false,"ActiveSunday":false,"DemandFastNotification":false,"SerialNotification":false,"ReminderDelay":0,"AllObjects":1,"Active":true,"last_modify":" "},
+
+{"AGID":5,"Name":"Openlogger","StartHour":"00","StopHour":"23","StartMinute":"00","StopMinute":"59","ActiveSaturday":
+false,"ActiveSunday":false,"DemandFastNotification":true,"SerialNotification":false,"ReminderDelay":0,"AllObjects":0,"Active":true,"last_modify":" "},
+
+{"AGID":1,"Name":"System","StartHour":"00","StopHour":"24","StartMinute":"00","StopMinute":"00","ActiveSaturday":true,"ActiveSunday"
+:true,"DemandFastNotification":false,"SerialNotification":false,"ReminderDelay":0,"AllObjects":0,"Active":true,"last_modify":" "},
+
+{"AGID":4,"Name":"Örestad Linux","StartHour":"00","StopHour":"23","StartMinute":"00","StopMinute":"59","ActiveSaturday":
+false,"ActiveSunday":false,"DemandFastNotification":false,"SerialNotification":false,"ReminderDelay":0,"AllObjects":1,"Active":true,"last_modify":" "}]

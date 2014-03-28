@@ -1,0 +1,12 @@
+Logfile initialized
+[INFO] logfile = /Users/VVT/Documents/Titanium_Studio_Workspace/Planen/build.log
+[DEBUG] /Users/VVT/Library/Application Support/Titanium/mobilesdk/osx/3.2.2.GA/android/builder.py emulator LarmKlient /Users/VVT/Library/android-sdk-macosx /Users/VVT/Documents/Titanium_Studio_Workspace/Planen se.vvtmediadesign.planen 6 HVGA x86 
+[INFO] Launching Android emulator...one moment
+[DEBUG] From: /Users/VVT/Library/android-sdk-macosx/tools/emulator
+[DEBUG] SDCard: /Users/VVT/.titanium/android2.sdcard
+[DEBUG] AVD ID: 6
+[DEBUG] AVD Skin: HVGA
+[DEBUG] AVD ABI: x86
+[DEBUG] SDK: /Users/VVT/Library/android-sdk-macosx
+[DEBUG] /Users/VVT/Library/android-sdk-macosx/tools/emulator -avd titanium_6_HVGA_x86 -port 5560 -sdcard /Users/VVT/.titanium/titanium_6_HVGA_x86.sdcard -logcat *:d,*,TiAPI:V -no-boot-anim -partition-size 128
+[INFO] Android Emulator has exited
