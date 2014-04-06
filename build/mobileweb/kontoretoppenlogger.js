@@ -29,8 +29,8 @@ win5.add(buttontillbakalarminfo);
 
 buttontillbakalarminfo.addEventListener('click',function() {
     var winlarmlista = Titanium.UI.createWindow({
-        url:'larmlista.js',
-        title:'Larm Info'
+        url:'larmgrupper.js',
+        title:'Larm Grupper'
     });
     winlarmlista.open({modal:true});
     win5.close();
@@ -48,6 +48,12 @@ var skrivavlarmbutton = Titanium.UI.createButton({
 	title:'Skriv Av Larm',
 	zIndex:4,
 	bottom:'30%'
+});
+win5.add(skrivavlarmbutton);
+
+skrivavlarmbutton.addEventListener('click', function (e) {
+    alert('Larmet är avaktiverat');
+    // Skicka/Posta meddelandet till json file alarmstatus.
 });
 win5.add(skrivavlarmbutton);
 

@@ -64,7 +64,7 @@ xhr.onerror = function(e) {
 };
 
 // http://www.vvt-mediadesign.se/alarmobjects.json
-xhr.open('GET', 'alarmobjects.json');
+xhr.open('GET', 'http://www.vvt-mediadesign.se/alarmobjects.json');
 xhr.send();
 
 var viewtable = Titanium.UI.createTableView({

@@ -6,6 +6,9 @@
     <property name="acs-oauth-secret-development" type="string">RCSIn4f9HyEfoLzfIPqWL7prTDCUTIDM</property>
     <property name="acs-oauth-key-development" type="string">YoQLWRBJ7QBH8LOjGVqCJ8nzLmWJm15f</property>
     <property name="acs-api-key-development" type="string">SPjY0UYeS5MpAhbWw7N02ZvmpWCmF11d</property>
+    <property name="acs-push-type-development" type="string">gcm</property>
+    <property name="acs-push-type-production" type="string">gcm</property>
+    <property name="acs-push-type" type="string">gcm</property>
     <id>se.vvtmediadesign.planen</id>
     <name>LarmKlient</name>
     <version>1.1</version>
@@ -53,7 +56,11 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules/>
+    <modules>
+        <module platform="commonjs">ti.cloud</module>
+        <module platform="android">ti.cloudpush</module>
+        <module platform="android" version="0.5">com.activate.gcm</module>
+    </modules>
     <deployment-targets>
         <target device="android">true</target>
         <target device="blackberry">false</target>
@@ -63,4 +70,8 @@
         <target device="tizen">false</target>
     </deployment-targets>
     <sdk-version>3.2.2.GA</sdk-version>
+    <property name="com.activate.gcm.sender_id" type="string">420806563262</property>
+    <property name="com.activate.gcm.component" type="string">gcm.gcm/gcm.gcm.GcmActivity</property>
+    <property name="com.activate.gcm.icon" type="int">2130837504</property>
+    
 </ti:app>

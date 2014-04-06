@@ -147,3 +147,131 @@ var copyrightLabel = Ti.UI.createLabel({
 	height:'auto'
 });
 win1.add(copyrightLabel);
+
+win1.addEventListener('android:back',function() {
+	alert('Stäng av Aplikationen/LarmKlient genom att trycka på mitt knappen.');
+});
+
+// ------------------------- PUSH NOTIFICATION ----------------------------- //
+
+// alert(Ti.Platform.id);
+
+// 85201559b42e688f
+
+// var myPushDeviceToken = "85201559b42e688f";
+// var myPushDeviceToken;
+ 
+// var CloudPush = require('ti.cloudpush');//Import the cloud push module. */
+ 
+/*
+CloudPush.retrieveDeviceToken({
+success : function deviceTokenSuccess(e) {
+alert('Current Device Token : ' + e.deviceToken);
+myPushDeviceToken = e.deviceToken; // Store the Device Token for subscribe the future use.
+},
+ 
+error : function deviceTokenError(e) {
+alert('Failed to register for push! ' + e.error);
+}
+});
+
+var Cloud = require('ti.cloud');//Import the cloud module.
+
+// vladimir.trigueiros@gmail.com
+
+Cloud.Users.create({
+    email: 'balubbas@gmail.com',
+    first_name: 'Vladimir',
+    last_name: 'V.Trigueiros',
+    password: 'mavatrordu1234',
+    password_confirmation: 'mavatrordu1234'
+}, function (e) {
+    if (e.success) {
+        var user = e.users[0];
+        alert('Success:\n' +
+            'id: ' + user.id + '\n' +
+            'sessionId: ' + Cloud.sessionId + '\n' +
+            'first name: ' + user.first_name + '\n' +
+            'last name: ' + user.last_name);
+    } else {
+        alert('Error:\n' +
+            ((e.error && e.message) || JSON.stringify(e)));
+    }
+});
+
+// type:'android'
+
+Cloud.PushNotifications.subscribe({
+    channel: 'planen',
+    device_token: myPushDeviceToken,
+    type : 'gcm'
+}, function (e) {
+    if (e.success) {
+        alert('Success');
+    } else {
+        alert('Error:\n' +
+            ((e.error && e.message) || JSON.stringify(e)));
+    }
+});*/
+
+//-------------------------------------------------------------
+
+var senderId = '420806563262';
+
+var c2dm = require('com.findlaw.c2dm');
+Ti.API.info("module is => " + c2dm);
+
+Ti.API.info('Registering...');
+c2dm.registerC2dm(senderId, {
+    success:function(e) {
+        Ti.API.info('JS registration success event: ' + e.registrationId);
+
+        var params = {devicecode: e.registrationId, deviceType: "Android"};
+        JOURNAL.webApi.webCallPOST(JOURNAL.serviceLocatorModel.urls.Membership, "/registerdevice", params, JOURNAL.registerDeviceComplete, JOURNAL.registerDeviceError);
+    },
+    error:function(e) {
+        Ti.API.error("Error during registration: "+e.error);
+
+        var message;
+        if(e.error == "ACCOUNT_MISSING") {
+            message = "No Google account found; you'll need to add one (in Settings/Accounts) in order to activate notifications";
+        } else {
+            message = "Error during registration: "+e.error;
+        }
+
+        Titanium.UI.createAlertDialog({
+            title: 'Push Notification Setup',
+            message: message,
+            buttonNames: ['OK']
+        }).show();
+    },
+    callback:function(e) // called when a push notification is received
+    {
+        Ti.API.info('JS message event: ' + JSON.stringify(e.data));
+
+        var intent = Ti.Android.createIntent({
+            action: Ti.Android.ACTION_MAIN,
+            flags: Ti.Android.FLAG_ACTIVITY_NEW_TASK | Ti.Android.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED,
+            className: 'com.geneca.journaling.GenecaJournalingActivity',
+            //className: 'org.appcelerator.titanium.TiActivity',
+            packageName: 'com.geneca.journaling'
+        });
+        intent.addCategory(Ti.Android.CATEGORY_LAUNCHER);
+
+        // This is fairly static: Not much need to be altered here
+        var pending = Ti.Android.createPendingIntent({
+            activity: Ti.Android.currentActivity,
+            intent: intent,
+            type: Ti.Android.PENDING_INTENT_FOR_ACTIVITY,
+        });
+
+        var notification = Ti.Android.createNotification({
+            contentIntent: pending,
+            contentTitle: 'New message',
+            contentText: e.data.message,
+            tickerText: "New message"
+        });
+
+        Ti.Android.NotificationManager.notify(1, notification);
+    }
+});

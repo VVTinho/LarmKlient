@@ -16,7 +16,7 @@ function sendAjax() {
 	};
 	
 	// http://www.vvt-mediadesign.se/alarmgroups.json
-	xhr.open('GET', 'alarmgroups.json');
+	xhr.open('GET', 'http://www.vvt-mediadesign.se/alarmgroups.json');
 	xhr.send();
 	
 	var tv = Titanium.UI.createTableView({
@@ -87,6 +87,18 @@ function sendAjax() {
 		       callbuttonthree();
 		    }
 		});
+		
+		tv.addEventListener("click", function (event) {
+		    if (event.source.buttonid == '3') {
+		       callbuttonfour();
+		    }
+		});
+		
+		tv.addEventListener("click", function (event) {
+		    if (event.source.buttonid == '4') {
+		       callbuttonfive();
+		    }
+		});
 	};
 };
 
@@ -120,6 +132,22 @@ function callbuttonthree() {
     // win2.hide();	
 }
 
+function callbuttonfour() {
+	var winsystem = Titanium.UI.createWindow({
+		url:'system.js',
+		title:'System'
+	});
+    winsystem.open({modal:true});
+}
+
+function callbuttonfive() {
+	var winorestadlinux = Titanium.UI.createWindow({
+		url:'orestad.js',
+		title:'Örestad Linux'
+	});
+    winorestadlinux.open({modal:true});
+}
+
 var tabGroup = Titanium.UI.createTabGroup();
 
 var tab2 = Titanium.UI.createTab({  
@@ -144,5 +172,5 @@ win2.add(label2);
 win2.open();
 
 win2.addEventListener('android:back',function() {
-	alert('Det går inte att använda tillbaka knappen på en Android.');
+	alert('Det går inte att gå tillbaka till inloggningsidan.\\n Om du vill gå tillbaka inloggningsidan måste du stänga av Applikationen');
 });

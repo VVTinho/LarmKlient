@@ -2,100 +2,7 @@ var win3 = Titanium.UI.createWindow({
     title:'Sensor/Larm Objekt',
     backgroundColor:'#fff',
     zIndex:2
-    // exitOnClose:true
 });
-
-var wrapper = Titanium.UI.createView({
-    width:'98%',
-    top:'1%',
-    height:'40%',
-    borderColor:'#000000',
-    borderWidth:'2',
-    backgroundColor:'#ff9933'
-});
-win3.add(wrapper);
-
-var wrapperLabel = Titanium.UI.createLabel({
-	text: 'Kvitterat LARM',
-	color: '#ffffff',
-	top: '50%',
-	textAlign:'center',
-	font: {
-		fontWeight: 'bold',
-		fontSize: 22
-	},
-	height:'auto'
-});
-wrapper.add(wrapperLabel);
-
-var wrappernya = Titanium.UI.createView({
-    width:'98%',
-    top:'41%',
-    height:'19%',
-    borderColor:'#000000',
-    borderWidth:'2',
-    backgroundColor:'#a9a9a9'
-});
-win3.add(wrappernya);
-
-var wrappernyaLabel = Titanium.UI.createLabel({
-	text: 'Nya',
-	color: '#000',
-	top: '50%',
-	textAlign:'center',
-	font: {
-		fontWeight: 'bold',
-		fontSize: 18
-	},
-	height:'auto'
-});
-wrappernya.add(wrappernyaLabel);
-
-var wrapperkvitterade = Titanium.UI.createView({
-    width:'98%',
-    top:'62%',
-    height:'20%',
-    borderColor:'#000000',
-    borderWidth:'2',
-    backgroundColor:'#ff9933'
-});
-win3.add(wrapperkvitterade);
-
-var wrapperkvitteradeLabel = Titanium.UI.createLabel({
-	text: 'Kvitterade',
-	color: '#000',
-	top: '50%',
-	textAlign:'center',
-	font: {
-		fontWeight: 'bold',
-		fontSize: 18
-	},
-	height:'auto'
-});
-wrapperkvitterade.add(wrapperkvitteradeLabel);
-
-var wrapperatergatt = Titanium.UI.createView({
-    width:'98%',
-    top:'82%',
-    height:'20%',
-    borderColor:'#000000',
-    borderWidth:'2',
-    backgroundColor:'#ffff33'
-});
-win3.add(wrapperatergatt);
-
-var wrapperatergattLabel = Titanium.UI.createLabel({
-	text: 'Har återgått',
-	color: '#000',
-	top: '50%',
-	textAlign:'center',
-	font: {
-		fontWeight: 'bold',
-		fontSize: 18
-	},
-	height:'auto'
-});
-wrapperatergatt.add(wrapperatergattLabel);
 
 var tabGroup = Titanium.UI.createTabGroup();
 
@@ -164,45 +71,72 @@ xhr.onerror = function(e) {
 };
 
 // http://www.vvt-mediadesign.se/alarmstatus.json
-xhr.open('GET', 'alarmstatus.json');
+xhr.open('GET', 'http://www.vvt-mediadesign.se/alarmstatus.json');
 xhr.send();
-
-var viewalla = Titanium.UI.createTableView({
-	maxRowHeight:40,
-	minRowHeight:30,
-	height: Titanium.UI.SIZE,
-    width: Titanium.UI.FILL,
-    color: 'black'
-});
-win3.add(viewalla);
 
 xhr.onload = function() {
 
     var data = [];
     var objekten = JSON.parse(this.responseText);
     
-    for (s in objekten) {
-        data.push(Titanium.UI.createTableViewRow({
-        	title: objekten[s],
-        	height: 150,
-        	left:'50%',
-        	top:160
-        }));
-        data.push(Titanium.UI.createTableViewRow({
-        	title: objekten[s].New,
-        	height: 160,
-        	left:'50%'
-        }));
-        data.push(Titanium.UI.createTableViewRow({
-        	title: objekten[s].Signed,
-        	height: 140,
-        	left:'50%'
-        }));
-        data.push(Titanium.UI.createTableViewRow({
-        	title: objekten[s].Returned,
-        	height: 140,
-        	left:'50%'
-        }));
+    for (s in objekten) { 
+	    var label = Titanium.UI.createLabel ({textAlign:'center',text:'Kvitterade LARM ' + objekten[s],font:{fontWeight:'bold',fontSize:22},color:'#ffffff'});
+	    var row = Titanium.UI.createTableViewRow({title:'Kvitterade LARM',backgroundColor:'#ff9933',height:200});
+	    row.add(label);
+	    data.push(row);
+	    
+	    var viewalla = Titanium.UI.createTableView({
+			height: Titanium.UI.SIZE,
+		    width: Titanium.UI.FILL
+		});
+		win3.add(viewalla);
 	}
-    viewalla.data = data;
+	
+	for (n in objekten) { 
+	    var labels = Titanium.UI.createLabel ({textAlign:'center',text:'Nya ' + objekten[s].New,font: {fontWeight: 'bold',fontSize: 22}, color:'#000000'});
+	    var rows = Titanium.UI.createTableViewRow({title:'Nya',backgroundColor:'#a9a9a9',height:100});
+	    rows.add(labels);
+	    data.push(rows);
+	    
+	    var viewallas = Titanium.UI.createTableView({
+			height: Titanium.UI.SIZE,
+		    width: Titanium.UI.FILL
+		});
+		win3.add(viewallas);
+	}
+	
+	for (f in objekten) { 
+	    var labelkvitterade = Titanium.UI.createLabel ({textAlign:'center',text:'Kvitterade ' + objekten[s].Signed,font: {fontWeight: 'bold',fontSize: 22}, color:'#000000'});
+	    var rowkvitterade = Titanium.UI.createTableViewRow({title:'Kvitterade' ,backgroundColor:'#ffff33',height:100});
+	    rowkvitterade.add(labelkvitterade);
+	    data.push(rowkvitterade);
+	    
+	    var viewkvitterade = Titanium.UI.createTableView({
+			height: Titanium.UI.SIZE,
+		    width: Titanium.UI.FILL
+		});
+		win3.add(viewkvitterade);
+	}
+	
+	for (v in objekten) { 
+	    var labelharatergatt = Titanium.UI.createLabel ({textAlign:'center',text:'Har återgått ' + objekten[s].Returned,font: {fontWeight: 'bold',fontSize: 22}, color:'#000000'});
+	    var rowharatergatt = Titanium.UI.createTableViewRow({title:'Har återgått',backgroundColor:'#ffff33',height:100});
+	    rowharatergatt.add(labelharatergatt);
+	    data.push(rowharatergatt);
+	    
+	    var viewharhargatt = Titanium.UI.createTableView({
+			height: Titanium.UI.SIZE,
+		    width: Titanium.UI.FILL
+		});
+		win3.add(viewharhargatt);
+	}
+
+	viewalla.data = data;
+	viewallas.data = data;
+	viewkvitterade.data = data;
+	viewharhargatt.data = data;
 };
+
+win3.addEventListener('android:back',function() {
+	alert('Använd tillbaka knappen i Applikationen/LarmKlient.');
+});
